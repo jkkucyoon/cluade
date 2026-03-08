@@ -1,0 +1,17 @@
+# Generated model files
+*/models/*.joblib
+
+# Generated data and plots
+*/data/*.csv
+*/plots/*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/

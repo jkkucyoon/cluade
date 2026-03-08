@@ -54,7 +54,7 @@ import os
 warnings.filterwarnings('ignore')
 np.random.seed(42)
 
-OUTPUT_DIR = "/home/claude/projects/project1_supplier_risk"
+OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(f"{OUTPUT_DIR}/models", exist_ok=True)
 os.makedirs(f"{OUTPUT_DIR}/plots", exist_ok=True)
 os.makedirs(f"{OUTPUT_DIR}/data", exist_ok=True)

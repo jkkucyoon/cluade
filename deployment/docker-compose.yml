@@ -2,15 +2,15 @@ version: "3.8"
 
 services:
   ml-api:
-    build: .
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
     container_name: z2data-ml-api
     ports:
       - "8000:8000"
     environment:
       - MODEL_ENV=production
       - LOG_LEVEL=info
-    volumes:
-      - ./models:/app/models
     restart: unless-stopped
     deploy:
       resources:
@@ -22,19 +22,3 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
-
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin

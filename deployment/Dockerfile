@@ -1,14 +1,18 @@
 FROM python:3.11-slim
 
-WORKDIR /app
+WORKDIR /app/deployment
 
 # Install dependencies
-COPY requirements.txt .
+COPY deployment/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code and models
-COPY app.py .
-COPY models/ ./models/
+# Copy application code
+COPY deployment/app.py .
+
+# Copy model files from each project (must be generated first)
+COPY project1_supplier_risk/models/ /app/project1_supplier_risk/models/
+COPY project2_component_obsolescence/models/ /app/project2_component_obsolescence/models/
+COPY project3_demand_forecasting/models/ /app/project3_demand_forecasting/models/
 
 # Expose port
 EXPOSE 8000
